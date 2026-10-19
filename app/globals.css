@@ -1,0 +1,809 @@
+/* ==================================================================
+   Nazareth Hub - global stylesheet
+   Built on top of template/itsolution-master (Colorlib "ITSolution").
+
+   Section 1: Tailwind v4 entry + theme tokens
+   Section 2: CSS custom properties, reproduced VERBATIM from the zip
+   Section 3: @font-face rules, reproduced VERBATIM from the zip
+   Section 4: #ftco-loader, reproduced VERBATIM from css/style.css:9752
+   Section 5: Template component classes, rebuilt on the zip's exact values
+   Section 6: New UI (cookie banner, floating buttons, masonry, a11y)
+   ================================================================== */
+
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* 1. Theme tokens (Tailwind v4)                                       */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  --font-sans: "Montserrat", Arial, sans-serif;
+
+  --color-primary: #323edd;
+  --color-primary-d4: #232fd7;
+  --color-primary-d6: #1e2ad2;
+  --color-primary-d8: #1825cd;
+  --color-primary-d9: #1622ca;
+  --color-secondary: #ffa41b;
+  --color-darken: #090f35;
+  --color-darken-d4: #060923;
+  --color-darken-d5: #050820;
+  --color-body: #999999;
+  --color-heading: rgba(0, 0, 0, 0.8);
+  --color-cloud: #f8f9fa;
+
+  --shadow-soft: 0px 24px 36px -11px rgba(0, 0, 0, 0.09);
+  --shadow-card: 0px 24px 64px rgba(0, 0, 0, 0.08);
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. CSS custom properties from css/style.css lines 7-35 (VERBATIM)   */
+/*    and scss/style.scss lines 4-11 design tokens                     */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+/* Template SCSS tokens, exposed as custom properties so the new build and the
+   preserved template agree on every value. */
+:root {
+  --nh-font-primary: "Montserrat", Arial, sans-serif;
+  --nh-white: #fff;
+  --nh-black: #000000;
+  --nh-darken: #090f35;
+  --nh-primary: #323edd;
+  --nh-secondary: #ffa41b;
+  --nh-body: #999999;
+  --nh-heading: rgba(0, 0, 0, 0.8);
+  --nh-bg-light: #f8f9fa;
+  --nh-primary-darken-4: #232fd7;
+  --nh-primary-darken-6: #1e2ad2;
+  --nh-primary-darken-8: #1825cd;
+  --nh-primary-darken-9: #1622ca;
+  --nh-darken-darken-4: #060923;
+  --nh-darken-darken-5: #050820;
+  --nh-loader-track: #eeeeee;
+  --nh-loader-stroke: #f96d00;
+  --nh-section-pad: 7em;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--nh-font-primary);
+  background: var(--nh-white);
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: 400;
+  color: var(--nh-body);
+}
+
+h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
+  line-height: 1.5;
+  color: var(--nh-heading);
+  font-weight: 400;
+}
+
+::selection {
+  background: var(--nh-secondary);
+  color: var(--nh-darken);
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. @font-face, reproduced VERBATIM from css/flaticon.css:7-23       */
+/*    and fonts/flaticon/font/flaticon.css:6-23                        */
+/* ------------------------------------------------------------------ */
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("/fonts/flaticon/font/Flaticon.eot");
+  src: url("/fonts/flaticon/font/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("/fonts/flaticon/font/Flaticon.woff") format("woff"),
+       url("/fonts/flaticon/font/Flaticon.ttf") format("truetype"),
+       url("/fonts/flaticon/font/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("/fonts/flaticon/font/Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+  font-family: Flaticon;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.flaticon-bolt:before { content: "\f100"; }
+.flaticon-cyber:before { content: "\f101"; }
+.flaticon-light-bulb:before { content: "\f102"; }
+.flaticon-presentation:before { content: "\f103"; }
+.flaticon-secure:before { content: "\f104"; }
+.flaticon-stats:before { content: "\f105"; }
+.flaticon-web-programming:before { content: "\f106"; }
+
+/* ------------------------------------------------------------------ */
+/* 4. #ftco-loader, reproduced VERBATIM from css/style.css:9752-9830   */
+/* ------------------------------------------------------------------ */
+
+#ftco-loader {
+  position: fixed;
+  width: 96px;
+  height: 96px;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.24);
+  border-radius: 16px;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity .2s ease-out, visibility 0s linear .2s;
+  -o-transition: opacity .2s ease-out, visibility 0s linear .2s;
+  transition: opacity .2s ease-out, visibility 0s linear .2s;
+  z-index: 1000; }
+
+#ftco-loader.fullscreen {
+  padding: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  background-color: #fff;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
+#ftco-loader.show {
+  -webkit-transition: opacity .4s ease-out, visibility 0s linear 0s;
+  -o-transition: opacity .4s ease-out, visibility 0s linear 0s;
+  transition: opacity .4s ease-out, visibility 0s linear 0s;
+  visibility: visible;
+  opacity: 1; }
+
+#ftco-loader .circular {
+  -webkit-animation: loader-rotate 2s linear infinite;
+  animation: loader-rotate 2s linear infinite;
+  position: absolute;
+  left: calc(50% - 24px);
+  top: calc(50% - 24px);
+  display: block;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg); }
+
+#ftco-loader .path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  -webkit-animation: loader-dash 1.5s ease-in-out infinite;
+  animation: loader-dash 1.5s ease-in-out infinite;
+  stroke-linecap: round; }
+
+@-webkit-keyframes loader-rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes loader-rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@-webkit-keyframes loader-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0; }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px; }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px; } }
+
+@keyframes loader-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0; }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px; }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px; } }
+
+/* STEP 13 additions on top of the reproduced loader */
+#ftco-loader .loader-meta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(50% + 44px);
+  text-align: center;
+  font-family: var(--nh-font-primary);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--nh-primary);
+  font-size: 13px;
+}
+
+#ftco-loader .loader-meta small {
+  display: block;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--nh-body);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+#ftco-loader .building-draw path,
+#ftco-loader .building-draw line,
+#ftco-loader .building-draw rect {
+  stroke: var(--nh-primary);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  animation: building-draw 2.6s ease forwards;
+}
+
+@keyframes building-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ftco-loader .circular,
+  #ftco-loader .path {
+    animation: none;
+  }
+  #ftco-loader .building-draw path,
+  #ftco-loader .building-draw line,
+  #ftco-loader .building-draw rect {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* 5. Template component classes, rebuilt on the zip's exact values    */
+/* ------------------------------------------------------------------ */
+
+@layer components {
+  /* top utility bar, scss/style.scss:68 */
+  .wrap {
+    background: var(--nh-darken);
+    padding: 10px 0;
+  }
+  .wrap .phone {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .wrap .mailus {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* navbar brand, scss/style.scss:368 */
+  .navbar-brand {
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--nh-darken);
+    letter-spacing: -0.02em;
+  }
+  .navbar-brand span {
+    font-weight: 900;
+    color: var(--nh-black);
+  }
+
+  /* hero, scss/style.scss:381 */
+  .hero-wrap {
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+  }
+  .hero-wrap .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    opacity: 0.6;
+    background: var(--nh-darken-darken-4);
+  }
+  .slider-text h1 {
+    font-size: 50px;
+    color: var(--nh-white);
+    line-height: 1.2;
+    font-weight: 700;
+  }
+  .slider-text p {
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .slider-text p.line {
+    position: relative;
+    display: inline-block;
+  }
+  .slider-text p.line:after {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    content: "";
+    width: 40px;
+    height: 2px;
+    background: var(--nh-white);
+  }
+  @media (max-width: 767.98px) {
+    .slider-text h1 { font-size: 40px; }
+  }
+
+  /* section rhythm, scss/style.scss:992 */
+  .ftco-section {
+    padding: var(--nh-section-pad) 0;
+  }
+  .ftco-no-pt { padding-top: 0; }
+  .ftco-no-pb { padding-bottom: 0; }
+  .bg-light { background: #f8f9fa !important; }
+
+  /* heading, css/style.css compiled from scss:1306 */
+  .heading-section .subheading {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--nh-secondary);
+    font-weight: 600;
+  }
+  .heading-section h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--nh-heading);
+    line-height: 1.25;
+  }
+  .heading-section h2 span {
+    color: var(--nh-primary);
+  }
+  @media (max-width: 767.98px) {
+    .heading-section h2 { font-size: 28px; }
+  }
+  .heading-section.heading-section-white h2 {
+    color: #fff;
+  }
+  .heading-section.heading-section-white h2 span {
+    color: var(--nh-secondary);
+  }
+  .heading-section.heading-section-white p,
+  .heading-section.heading-section-white .subheading {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* buttons, scss/style.scss:584 */
+  .btn {
+    cursor: pointer;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.09);
+    -moz-box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.09);
+    box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.09);
+    display: inline-block;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  .btn-primary {
+    background: var(--nh-primary) !important;
+    border: 1px solid var(--nh-primary) !important;
+    color: var(--nh-white) !important;
+  }
+  .btn-primary:hover {
+    border: 1px solid var(--nh-primary);
+    background: transparent !important;
+    color: var(--nh-primary) !important;
+  }
+  .btn-primary.btn-outline-primary {
+    border: 1px solid var(--nh-primary);
+    background: transparent !important;
+    color: var(--nh-primary) !important;
+  }
+  .btn-primary.btn-outline-primary:hover {
+    border: 1px solid transparent;
+    background: var(--nh-primary) !important;
+    color: var(--nh-white) !important;
+  }
+  .btn-secondary-solid {
+    background: var(--nh-secondary) !important;
+    border: 1px solid var(--nh-secondary) !important;
+    color: var(--nh-darken) !important;
+  }
+  .btn-secondary-solid:hover {
+    background: transparent !important;
+    color: var(--nh-secondary) !important;
+  }
+  .btn-outline-white {
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: none;
+    border-radius: 5px;
+    color: var(--nh-white);
+  }
+  .btn-outline-white:hover,
+  .btn-outline-white:focus,
+  .btn-outline-white:active {
+    background: var(--nh-white);
+    border-color: var(--nh-white);
+    color: var(--nh-primary);
+  }
+
+  /* intro band cards, scss/style.scss:477 */
+  .ftco-intro {
+    margin-top: -200px;
+    position: relative;
+    z-index: 3;
+  }
+  @media (max-width: 991.98px) {
+    .ftco-intro { margin-top: -60px; }
+  }
+  .services-1 {
+    background: var(--nh-primary);
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  .services-1:before,
+  .services-1:after {
+    position: absolute;
+    content: "";
+    width: 4px;
+    height: 10px;
+    background: var(--nh-white);
+    transition: all 0.3s ease;
+  }
+  .services-1:before { top: 0; right: 0; }
+  .services-1:after { bottom: 0; left: 0; }
+  .services-1 .line {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    content: "";
+    pointer-events: none;
+  }
+  .services-1 .line:before,
+  .services-1 .line:after {
+    position: absolute;
+    content: "";
+    width: 10px;
+    height: 4px;
+    background: var(--nh-white);
+    transition: all 0.3s ease;
+  }
+  .services-1 .line:before { top: 0; right: 0; }
+  .services-1 .line:after { bottom: 0; left: 0; }
+  .services-1:hover { background: var(--nh-primary-darken-9); }
+  .services-1:hover:before,
+  .services-1:hover:after {
+    height: 30px;
+    background: var(--nh-secondary);
+  }
+  .services-1:hover .line:before,
+  .services-1:hover .line:after {
+    width: 30px;
+    background: var(--nh-secondary);
+  }
+  .services-1:hover .icon,
+  .services-1:hover h3 { color: var(--nh-secondary); }
+  .services-1.color-1 { background: var(--nh-primary-darken-4); }
+  .services-1.color-2 { background: var(--nh-primary-darken-6); }
+  .services-1 .icon { font-size: 40px; color: var(--nh-white); transition: all 0.3s ease; }
+  .services-1 h3 { color: var(--nh-white); font-size: 16px; transition: all 0.3s ease; }
+
+  /* counters, scss/style.scss:1653 */
+  .block-18 .text strong {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--nh-white);
+    display: block;
+    line-height: 1.1;
+  }
+  .block-18 .text span {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+  }
+
+  /* footer, scss/style.scss:1091 */
+  .ftco-footer {
+    font-size: 16px;
+    background: var(--nh-darken-darken-5);
+    padding: var(--nh-section-pad) 0;
+  }
+  .ftco-footer-logo {
+    color: var(--nh-primary) !important;
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .ftco-footer-logo span { color: var(--nh-secondary); }
+  .ftco-footer-widget h2 {
+    color: var(--nh-white);
+    margin-bottom: 28px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .ftco-footer p { color: rgba(255, 255, 255, 0.7); }
+  .ftco-footer a { color: rgba(255, 255, 255, 0.7); transition: color 0.3s ease; }
+  .ftco-footer a:hover { color: var(--nh-white); }
+  .ftco-footer-social li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--nh-white);
+    transition: all 0.3s ease;
+  }
+  .ftco-footer-social li a:hover {
+    background: var(--nh-secondary);
+    color: var(--nh-darken);
+  }
+
+  /* form controls, scss/style.scss:947 */
+  .form-control {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-family: var(--nh-font-primary);
+    color: var(--nh-heading);
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .form-control:focus {
+    outline: none;
+    border-color: var(--nh-primary);
+    box-shadow: 0 0 0 3px rgba(50, 62, 221, 0.15);
+  }
+  .form-control::placeholder { color: #adb5bd; }
+  .form-control[aria-invalid="true"] { border-color: var(--red); }
+
+  /* testimony, scss/style.scss:1514 */
+  .testimony-wrap {
+    background: #fff;
+    border-radius: 6px;
+    padding: 32px;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* blog-entry reused for event cards, scss/style.scss:1698 */
+  .blog-entry {
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 5px 24px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .blog-entry:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  /* map + contact boxes, scss/style.scss:1195 */
+  .dbox .icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--nh-primary);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* 6. New UI                                                           */
+/* ------------------------------------------------------------------ */
+
+/* masonry gallery */
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 180px;
+  grid-auto-flow: dense;
+  gap: 14px;
+}
+@media (min-width: 768px) {
+  .masonry { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+.masonry > * { border-radius: 8px; overflow: hidden; position: relative; }
+
+/* floating action buttons (STEP 14 / STEP 15) */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  z-index: 9998;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+.fab:hover { transform: translateY(-3px) scale(1.04); }
+.fab-whatsapp { right: 24px; background: #25d366; }
+.fab-voice { left: 24px; background: var(--nh-primary); }
+
+.fab-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  white-space: nowrap;
+  background: var(--nh-darken);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+  padding: 8px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.fab:hover .fab-tooltip,
+.fab:focus-visible .fab-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fab-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+  70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+.fab-whatsapp.fab-enter { animation: fab-pulse 1.6s ease-out 2; }
+
+@keyframes voice-ring {
+  0% { box-shadow: 0 0 0 0 rgba(50, 62, 221, 0.5); }
+  70% { box-shadow: 0 0 0 16px rgba(50, 62, 221, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(50, 62, 221, 0); }
+}
+.fab-voice.speaking { animation: voice-ring 1.4s ease-out infinite; }
+
+/* cookie consent banner (STEP 11) */
+.cookie-banner {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 24px 64px rgba(9, 15, 53, 0.25);
+  border: 1px solid rgba(9, 15, 53, 0.08);
+}
+@media (min-width: 1024px) {
+  .cookie-banner { left: 24px; right: auto; width: 460px; bottom: 24px; }
+}
+
+/* membership plan highlight (STEP 16 #6) */
+.plan-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.plan-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 48px rgba(9, 15, 53, 0.14);
+  border-color: var(--nh-primary);
+}
+
+/* skip link + focus visibility */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--nh-primary);
+  color: #fff;
+  padding: 10px 16px;
+  z-index: 10000;
+  border-radius: 0 0 6px 0;
+}
+.skip-link:focus { left: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--nh-secondary);
+  outline-offset: 2px;
+}
+
+/* static map placeholder */
+.static-map {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(9, 15, 53, 0.1);
+  background: #eef1f7;
+}
+
+/* tables */
+.nh-table th,
+.nh-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(9, 15, 53, 0.08);
+  vertical-align: top;
+}
+.nh-table thead th {
+  background: var(--nh-darken);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.nh-table tbody tr:hover { background: rgba(50, 62, 221, 0.04); }
+
+/* legal prose */
+.legal-prose h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 2em 0 0.6em;
+}
+.legal-prose p,
+.legal-prose li {
+  margin-bottom: 0.9em;
+}
+.legal-prose ul { list-style: disc; padding-left: 1.4em; }
